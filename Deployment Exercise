@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.28;
+
+contract BasicMath {
+    // Function called adder that returns the sum and an error flag
+    function adder(uint _a, uint _b) public pure returns (uint sum, bool error) {
+        unchecked {
+            sum = _a + _b;
+        }
+        if (sum < _a || sum < _b) {
+            return (0, true); // Overflow occurred
+        }
+        return (sum, false);
+    }
+
+    // Function called subtractor that returns the difference and an error flag
+    function subtractor(uint _a, uint _b) public pure returns (uint difference, bool error) {
+        if (_b > _a) {
+            return (0, true); // Underflow occurred
+        }
+        unchecked {
+            difference = _a - _b;
+        }
+        return (difference, false);
+    }
+}
